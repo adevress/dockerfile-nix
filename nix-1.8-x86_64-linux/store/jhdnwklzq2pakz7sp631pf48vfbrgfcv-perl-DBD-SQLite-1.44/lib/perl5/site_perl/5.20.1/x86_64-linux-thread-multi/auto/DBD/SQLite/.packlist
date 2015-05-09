@@ -1,0 +1,16 @@
+/nix/store/jhdnwklzq2pakz7sp631pf48vfbrgfcv-perl-DBD-SQLite-1.44/lib/perl5/site_perl/5.20.1/x86_64-linux-thread-multi/DBD/SQLite.pm
+/nix/store/jhdnwklzq2pakz7sp631pf48vfbrgfcv-perl-DBD-SQLite-1.44/lib/perl5/site_perl/5.20.1/x86_64-linux-thread-multi/DBD/SQLite/Cookbook.pod
+/nix/store/jhdnwklzq2pakz7sp631pf48vfbrgfcv-perl-DBD-SQLite-1.44/lib/perl5/site_perl/5.20.1/x86_64-linux-thread-multi/DBD/SQLite/Fulltext_search.pod
+/nix/store/jhdnwklzq2pakz7sp631pf48vfbrgfcv-perl-DBD-SQLite-1.44/lib/perl5/site_perl/5.20.1/x86_64-linux-thread-multi/DBD/SQLite/VirtualTable.pm
+/nix/store/jhdnwklzq2pakz7sp631pf48vfbrgfcv-perl-DBD-SQLite-1.44/lib/perl5/site_perl/5.20.1/x86_64-linux-thread-multi/DBD/SQLite/VirtualTable/FileContent.pm
+/nix/store/jhdnwklzq2pakz7sp631pf48vfbrgfcv-perl-DBD-SQLite-1.44/lib/perl5/site_perl/5.20.1/x86_64-linux-thread-multi/DBD/SQLite/VirtualTable/PerlData.pm
+/nix/store/jhdnwklzq2pakz7sp631pf48vfbrgfcv-perl-DBD-SQLite-1.44/lib/perl5/site_perl/5.20.1/x86_64-linux-thread-multi/auto/DBD/SQLite/SQLite.so
+/nix/store/jhdnwklzq2pakz7sp631pf48vfbrgfcv-perl-DBD-SQLite-1.44/lib/perl5/site_perl/5.20.1/x86_64-linux-thread-multi/auto/share/dist/DBD-SQLite/sqlite3.c
+/nix/store/jhdnwklzq2pakz7sp631pf48vfbrgfcv-perl-DBD-SQLite-1.44/lib/perl5/site_perl/5.20.1/x86_64-linux-thread-multi/auto/share/dist/DBD-SQLite/sqlite3.h
+/nix/store/jhdnwklzq2pakz7sp631pf48vfbrgfcv-perl-DBD-SQLite-1.44/lib/perl5/site_perl/5.20.1/x86_64-linux-thread-multi/auto/share/dist/DBD-SQLite/sqlite3ext.h
+/nix/store/jhdnwklzq2pakz7sp631pf48vfbrgfcv-perl-DBD-SQLite-1.44/share/man/man3/DBD::SQLite.3
+/nix/store/jhdnwklzq2pakz7sp631pf48vfbrgfcv-perl-DBD-SQLite-1.44/share/man/man3/DBD::SQLite::Cookbook.3
+/nix/store/jhdnwklzq2pakz7sp631pf48vfbrgfcv-perl-DBD-SQLite-1.44/share/man/man3/DBD::SQLite::Fulltext_search.3
+/nix/store/jhdnwklzq2pakz7sp631pf48vfbrgfcv-perl-DBD-SQLite-1.44/share/man/man3/DBD::SQLite::VirtualTable.3
+/nix/store/jhdnwklzq2pakz7sp631pf48vfbrgfcv-perl-DBD-SQLite-1.44/share/man/man3/DBD::SQLite::VirtualTable::FileContent.3
+/nix/store/jhdnwklzq2pakz7sp631pf48vfbrgfcv-perl-DBD-SQLite-1.44/share/man/man3/DBD::SQLite::VirtualTable::PerlData.3

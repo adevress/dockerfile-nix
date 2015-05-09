@@ -1,0 +1,51 @@
+#! /nix/store/g9ybksy400pfn7fncw8dqfnz6m7fdyrk-perl-5.20.1/bin/perl -w -I/nix/store/16za1lqa47rayyn9058i4a1nv358gnv5-nix-1.8/lib/perl5/site_perl/5.20.1/x86_64-linux-thread-multi -I/nix/store/d4b4avbsbcz4hbf35r1270rdkfk7gf7y-perl-DBI-1.631/lib/perl5/site_perl -I/nix/store/jhdnwklzq2pakz7sp631pf48vfbrgfcv-perl-DBD-SQLite-1.44/lib/perl5/site_perl -I/nix/store/wg4dxpl9c9xfr1zg4j80j4c4n5s626sy-perl-WWW-Curl-4.17/lib/perl5/site_perl
+
+use strict;
+use Nix::Manifest;
+use Nix::GeneratePatches;
+use Nix::Utils;
+
+if (scalar @ARGV != 5) {
+    print STDERR <<EOF;
+Usage: nix-generate-patches NAR-DIR PATCH-DIR PATCH-URI OLD-MANIFEST NEW-MANIFEST
+
+This command generates binary patches between NAR files listed in
+OLD-MANIFEST and NEW-MANIFEST.  The patches are written to the
+directory PATCH-DIR, and the prefix PATCH-URI is used to generate URIs
+for the patches.  The patches are added to NEW-MANIFEST.  All NARs are
+required to exist in NAR-DIR.  Patches are generated between
+succeeding versions of packages with the same name.
+EOF
+    exit 1;
+}
+
+my $narPath = $ARGV[0];
+my $patchesPath = $ARGV[1];
+my $patchesURL = $ARGV[2];
+my $srcManifest = $ARGV[3];
+my $dstManifest = $ARGV[4];
+
+my (%srcNarFiles, %srcLocalPaths, %srcPatches);
+readManifest $srcManifest, \%srcNarFiles, \%srcPatches;
+
+my (%dstNarFiles, %dstLocalPaths, %dstPatches);
+readManifest $dstManifest, \%dstNarFiles, \%dstPatches;
+
+my $tmpDir = mkTempDir("nix-generate-patches");
+
+generatePatches \%srcNarFiles, \%dstNarFiles, \%srcPatches, \%dstPatches,
+    $narPath, $patchesPath, $patchesURL, $tmpDir;
+
+propagatePatches \%srcPatches, \%dstNarFiles, \%dstPatches;
+
+# Optionally add all new patches to the manifest in $NIX_ALL_PATCHES.
+my $allPatchesFile = $ENV{"NIX_ALL_PATCHES"};
+if (defined $allPatchesFile) {
+    my (%dummy, %allPatches);
+    readManifest("$patchesPath/all-patches", \%dummy, \%allPatches)
+        if -f $allPatchesFile;
+    copyPatches \%dstPatches, \%allPatches;
+    writeManifest($allPatchesFile, {}, \%allPatches, 0);
+}
+
+writeManifest $dstManifest, \%dstNarFiles, \%dstPatches;

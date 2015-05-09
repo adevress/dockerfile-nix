@@ -1,0 +1,22 @@
+#!/bin/sh
+
+#default user
+export USER=default
+
+# creat storage path
+mkdir -m 0755 /nix && chown default /nix
+
+# creat nix group
+echo "nixbld:x:242:default" >> /etc/group
+
+# create sh environment
+mkdir /etc/profile.d/
+echo '. /$HOME/.profile' >> /etc/profile.d/user.sh
+
+# install
+su default -c "sh install"
+
+echo 'ENV=/home/default/.nix-profile/etc/profile.d/nix.sh; export ENV' >> /home/default/.profile
+chown default:default /home/default/.profile 
+
+

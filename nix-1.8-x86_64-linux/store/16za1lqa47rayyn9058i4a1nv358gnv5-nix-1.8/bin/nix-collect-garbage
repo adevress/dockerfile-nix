@@ -1,0 +1,65 @@
+#! /nix/store/g9ybksy400pfn7fncw8dqfnz6m7fdyrk-perl-5.20.1/bin/perl -w -I/nix/store/16za1lqa47rayyn9058i4a1nv358gnv5-nix-1.8/lib/perl5/site_perl/5.20.1/x86_64-linux-thread-multi -I/nix/store/d4b4avbsbcz4hbf35r1270rdkfk7gf7y-perl-DBI-1.631/lib/perl5/site_perl -I/nix/store/jhdnwklzq2pakz7sp631pf48vfbrgfcv-perl-DBD-SQLite-1.44/lib/perl5/site_perl -I/nix/store/wg4dxpl9c9xfr1zg4j80j4c4n5s626sy-perl-WWW-Curl-4.17/lib/perl5/site_perl
+
+use strict;
+use Nix::Config;
+
+my $profilesDir = "/nix/var/nix/profiles";
+
+
+# Process the command line arguments.
+my @args = ();
+my $arg;
+
+my $removeOld = 0;
+my $gen;
+my $dryRun = 0;
+
+while ($arg = shift) {
+    if ($arg eq "--delete-old" || $arg eq "-d") {
+        $removeOld = 1;
+        $gen = "old";
+    } elsif ($arg eq "--delete-older-than") {
+        $removeOld = 1;
+        $gen = shift;
+    } elsif ($arg eq "--dry-run") {
+        $dryRun = 1;
+    } elsif ($arg eq "--help") {
+        exec "man nix-collect-garbage" or die;
+    } else {
+        push @args, $arg;
+    }
+}
+
+
+# If `-d' was specified, remove all old generations of all profiles.
+# Of course, this makes rollbacks to before this point in time
+# impossible.
+
+sub removeOldGenerations;
+sub removeOldGenerations {
+    my $dir = shift;
+
+    my $dh;
+    opendir $dh, $dir or die;
+
+    foreach my $name (sort (readdir $dh)) {
+        next if $name eq "." || $name eq "..";
+        $name = $dir . "/" . $name;
+        if (-l $name && (readlink($name) =~ /link/)) {
+            print STDERR "removing old generations of profile $name\n";
+
+            system("$Nix::Config::binDir/nix-env", "-p", $name, "--delete-generations", $gen, $dryRun ? "--dry-run" : ());
+        }
+        elsif (! -l $name && -d $name) {
+            removeOldGenerations $name;
+        }
+    }
+
+    closedir $dh or die;
+}
+
+removeOldGenerations $profilesDir if $removeOld;
+
+
+# Run the actual garbage collector.
+exec "$Nix::Config::binDir/nix-store", "--gc", @args unless $dryRun;

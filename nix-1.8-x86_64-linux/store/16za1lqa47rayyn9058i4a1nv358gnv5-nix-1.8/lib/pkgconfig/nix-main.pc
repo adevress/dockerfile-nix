@@ -1,0 +1,9 @@
+prefix=/nix/store/16za1lqa47rayyn9058i4a1nv358gnv5-nix-1.8
+libdir=/nix/store/16za1lqa47rayyn9058i4a1nv358gnv5-nix-1.8/lib
+includedir=/nix/store/16za1lqa47rayyn9058i4a1nv358gnv5-nix-1.8/include
+
+Name: Nix
+Description: Nix Package Manager
+Version: 1.8
+Libs: -L${libdir} -lnixmain
+Cflags: -I${includedir}/nix

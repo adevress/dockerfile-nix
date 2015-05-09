@@ -1,0 +1,7 @@
+#!/bin/sh
+bindir='/nix/store/sr65fbmyvsrzd4vbgvx1pkqm6a04hzas-gzip-1.6/bin'
+case $1 in
+--__bindir) bindir=${2?}; shift; shift;;
+esac
+PATH=$bindir:$PATH
+exec zgrep --__bindir "$bindir" -E "$@"

@@ -1,0 +1,22 @@
+=head2 Wed Dec  3 04:48:31 2014: C<Module> L<WWW::Curl|WWW::Curl>
+
+=over 4
+
+=item *
+
+C<installed into: /nix/store/wg4dxpl9c9xfr1zg4j80j4c4n5s626sy-perl-WWW-Curl-4.17/lib/perl5/site_perl/5.20.1>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 4.17>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+

@@ -1,0 +1,22 @@
+=head2 Tue Nov 18 12:17:41 2014: C<Module> L<DBI|DBI>
+
+=over 4
+
+=item *
+
+C<installed into: /nix/store/d4b4avbsbcz4hbf35r1270rdkfk7gf7y-perl-DBI-1.631/lib/perl5/site_perl/5.20.1>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 1.631>
+
+=item *
+
+C<EXE_FILES: dbiproxy dbiprof dbilogstrip>
+
+=back
+

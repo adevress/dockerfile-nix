@@ -1,0 +1,10 @@
+prefix=/nix/store/x8l1vvq8fbwlx1iizf5sx2blb4fqcrlh-boehm-gc-7.2f
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: Boehm-Demers-Weiser Conservative Garbage Collector
+Description: A garbage collector for C and C++
+Version: 7.2
+Libs: -L${libdir} -lgc
+Cflags: -I${includedir}
